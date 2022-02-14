@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cassandra-driver": "^4.6.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "type": "module"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^8.9.0"
+  }
+}
