@@ -6,23 +6,7 @@ const app = express();
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const client = require("./service/dbservice");
-
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "My Guard",
-      version: "1.0.0",
-      description: "Crimes API",
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-    ],
-  },
-  apis: ["./routes/*.js"],
-};
+const options = require("./swagger-config.json");
 
 const specs = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));

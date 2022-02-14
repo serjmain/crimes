@@ -1,0 +1,18 @@
+{
+    "definition": {
+        "openapi": "3.0.0",
+        "info": {
+            "title": "My Guard",
+            "version": "1.0.0",
+            "description": "Crimes API"
+        },
+        "servers": [
+            {
+                "url": "http://localhost:3000"
+            }
+        ]
+    },
+    "apis": [
+        "./routes/*.js"
+    ]
+}
