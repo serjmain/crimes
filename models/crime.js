@@ -59,5 +59,11 @@ module.exports = {
             WHERE id = ? 
         `
         return queryHelper.execute(query, params);        
-    }
+    },
+
+    /* sortByDescRate() {
+        const query = `SELECT * FROM crimes WHERE rate = ? ORDER by  `;
+
+    } */
+    
 }
