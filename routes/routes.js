@@ -39,7 +39,8 @@ const router = express.Router();
  *            userId: 47745749-d385-4545-903a-d4ec73d70f98
  *            policeStationId: 151a87da-48ef-4827-9d21-26aa96ea1176
  *            name: robbery
- *            date: 12.02.2022        
+ *            date: 12.02.2022  
+ *            rate: 8888      
  */
 
 /**
@@ -84,8 +85,7 @@ router.get('/crimes', async (req, res) => {
  *       - in: path
  *         name: id
  *         schema:
- *           type: timeuuid
- *         required: true
+ *           type: timeuuid         
  *         description: crime id
  *     responses:
  *       200:
@@ -135,8 +135,7 @@ router.post('/crimes', async (req, res) => {
  *      - in: path
  *        name: id
  *        schema:
- *          type: timeuuid
- *        required: true
+ *          type: timeuuid *        
  *        description: Crime id
  *    requestBody:
  *      required: true
