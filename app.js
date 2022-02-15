@@ -11,7 +11,7 @@ const options = require("./swagger-config.json");
 const specs = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(cors());
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, async () => {
   await client.connect();
