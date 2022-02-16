@@ -55,7 +55,7 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @swagger
+ * 
  * /crimes:
  *   get:
  *     summary: Get crimes list

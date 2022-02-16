@@ -17,10 +17,10 @@ module.exports = {
         if (params.searchByName.name) {
             query += `WHERE name = ? LIMIT 1 `;
         }
-        if (params.allCrimesByPoliceStationId.policeStationId) {
+        if (params.policeStationId) {
             query += `WHERE policestationid = ?`;
         }
-        if (params.allCrimesByUserId.userId) {
+        if (params.userId) {
             query += `WHERE userid = ?`;
         }
 
