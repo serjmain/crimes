@@ -84,8 +84,7 @@ router.get('/crimes', async (req, res) => {
  *       - in: path
  *         name: id
  *         schema:
- *           type: timeuuid
- *         required: true
+ *           type: timeuuid         
  *         description: crime id
  *     responses:
  *       200:
@@ -135,8 +134,7 @@ router.post('/crimes', async (req, res) => {
  *      - in: path
  *        name: id
  *        schema:
- *          type: timeuuid
- *        required: true
+ *          type: timeuuid        
  *        description: Crime id
  *    requestBody:
  *      required: true
