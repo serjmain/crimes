@@ -1,4 +1,5 @@
 const queryHelper = require('../service/dbservice');
+const prepareQuery = require('../service/prepareQuery');
 
 module.exports = {
 
@@ -35,8 +36,8 @@ module.exports = {
         return queryHelper.execute(query, params);
     },
 
-    getAll() {
-        const query = `SELECT * FROM crimes`;
+    async getAll(params) {        
+        const query = await prepareQuery(params);
 
         return queryHelper.execute(query, {});
     },
@@ -60,48 +61,4 @@ module.exports = {
         `
         return queryHelper.execute(query, params);
     },
-
-    /* sortByRateDesc() {
-        const query = `SELECT * FROM crimes ORDER by rate DESC `;
-        return queryHelper.execute(query, {});
-    } */
-
-    /* sortByRateAsc() {
-        const query = `SELECT * FROM crimes ORDER by rate ASC `;
-        return queryHelper.execute(query, {});
-    } */
-
-    /* sortByIdDesc() {
-        const query = `SELECT * FROM crimes ORDER by id DESC `;
-        return queryHelper.execute(query, {});
-    } */
-
-    /* sortByIdAsc() {
-        const query = `SELECT * FROM crimes ORDER by id ASC `;
-        return queryHelper.execute(query, {});
-    } */
-
-    /* getAllByUserId(userid) {
-        const params = [userid];
-        const query = `SELECT * FROM crimes WHERE userid = ?`;
-
-        return queryHelper.execute(query, params);
-
-    } */
-
-    /* getAllByPoliceStationId(policestationid) {
-        const params = [policestationid];
-        const query = `SELECT * FROM crimes WHERE policestationid = ?`;
-
-        return queryHelper.execute(query, params);
-    } */
-
-    /* findCrimeByName(name) {
-        const params = [name];
-        const query = `SELECT * FROM crimes WHERE name = ? LIMIT 1`;
-
-        return queryHelper.execute(query, params);
-    } */
-
-
 }

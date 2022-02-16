@@ -4,7 +4,7 @@ module.exports = {
 
     getCrimes(req, res) {        
         crimeRepository
-            .getAll()
+            .getAll(req.params)
             .then((result) => {                
                 res.status(200).json(result.rows);
             })

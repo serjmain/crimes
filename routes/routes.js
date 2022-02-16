@@ -58,8 +58,44 @@ router.get('/', (req, res) => {
  * @swagger
  * /crimes:
  *   get:
- *     summary: Get all crimes
+ *     summary: Get crimes list
  *     tags: [Crimes]
+ *     parameters:
+ *       - in: query
+ *         name: sortBy
+ *         schema: 
+ *           type: string
+ *       description: Field sort by
+ *       - in: query
+ *         name: sortOrder
+ *         schema: 
+ *           type: string
+ *       description: Value to define sort direction - 'desc' or 'asc'
+ *       - in: query
+ *         name: offset
+ *         schema:
+ *           type: string
+ *       description: Offset in result array for pagination
+ *       - in: query
+ *         name: limit
+ *         schema: 
+ *           type: string
+ *       description: Limit amount of items in result array for pagination
+ *       - in: query
+ *         name: search by name
+ *         schema: 
+ *           type: string
+ *       description: search by crime name
+ *       - in: query
+ *         name: find all crimes by police station ID
+ *         schema:
+ *           type: string
+ *       description: find all crimes by police station ID
+ *       - in: query
+ *         name: find all crimes by user ID
+ *         schema:
+ *           type: string
+ *       description: find all crimes by user ID *         
  *     responses:
  *       200:
  *         description: The list of the all crimes
@@ -68,7 +104,7 @@ router.get('/', (req, res) => {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Crimes'
+ *                 $ref: '#/components/schemas/Crimes'      
  */
 
 router.get('/crimes', async (req, res) => {
