@@ -55,56 +55,54 @@ router.get('/', (req, res) => {
 })
 
 /**
- * 
- * /crimes:
+ * @swagger
+ * /crimes:  
  *   get:
- *     summary: Get crimes list
- *     tags: [Crimes]
+ *     tags:
+ *     - Crimes
+ *     summary: get full criminal situation info
+ *     description: Get full criminal situation info
  *     parameters:
- *       - in: query
- *         name: sortBy
- *         schema: 
- *           type: string
- *       description: Field sort by
- *       - in: query
- *         name: sortOrder
- *         schema: 
- *           type: string
- *       description: Value to define sort direction - 'desc' or 'asc'
- *       - in: query
- *         name: offset
- *         schema:
- *           type: string
+ *     - in: query
+ *       description: Get all crimes by user ID
+ *       name: userId
+ *       type: integer
+ *     - in: query
+ *       description: Get all crimes by station ID
+ *       name: stationId
+ *       type: integer
+ *     - in: query
+ *       description: Find by keyword
+ *       name: keyword
+ *       type: string
+ *     - in: query
+ *       description: Sort all crimes by 
+ *       name: sortBy
+ *       type: string
+ *       enum: ["name", "rate", "date"]
+ *     - in: query
+ *       description: Sort all crimes by order
+ *       name: sortOrder
+ *       type: string  
+ *       enum: [ "asc", "desc"]
+ *     - in: query
  *       description: Offset in result array for pagination
- *       - in: query
- *         name: limit
- *         schema: 
- *           type: string
+ *       name: offset
+ *       type: string  
+ *     - in: query
  *       description: Limit amount of items in result array for pagination
- *       - in: query
- *         name: search by name
- *         schema: 
- *           type: string
- *       description: search by crime name
- *       - in: query
- *         name: find all crimes by police station ID
- *         schema:
- *           type: string
- *       description: find all crimes by police station ID
- *       - in: query
- *         name: find all crimes by user ID
- *         schema:
- *           type: string
- *       description: find all crimes by user ID *         
+ *       name: limit
+ *       type: string  
+ *    
  *     responses:
  *       200:
- *         description: The list of the all crimes
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Crimes'      
+ *         description: search results matching criteria
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Crimes'
+ *       400:
+ *         description: bad input parameter      
  */
 
 router.get('/crimes', async (req, res) => {

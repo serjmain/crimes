@@ -1,29 +1,57 @@
 module.exports = {
-    prepareQuery(params) {        
-        const query = `SELECT * FROM crimes`
+    prepareQuery(params) {
+        let query = `SELECT * FROM crimes`;
 
         if (params.sortBy) {
-            query += ` ORDER BY ${params.sortBy}`;
+            query += this.prepareSortQuery(params);
         }
-        if (params.sortByOrder) {
-            query += `ORDER BY ${params.sortByOrder}`;
+        if (params.searchBy) {
+            query += this.prepareSearchQuery
         }
         if (params.offset) {
-            query += `ORDER BY ${params.offset}`;
+            query += this.prepateOffsetQueary(params);
         }
         if (params.limit) {
-            query += `ORDER BY ${params.limit}`;
+            query += this.prepareLimitQuery(params);
         }
-        if (params.searchByName.name) {
-            query += `WHERE name = ? LIMIT 1 `;
-        }
-        if (params.policeStationId) {
-            query += `WHERE policestationid = ?`;
-        }
-        if (params.userId) {
-            query += `WHERE userid = ?`;
+        if (params.policeStationId || params.userId || params.searchBy) {
+            query += this.prepareWhereQuery(params);
         }
 
         return query;
+    },
+
+    prepareWhereQuery(params) {
+        let query = ` WHERE `;
+        let cond = [];
+
+        if (params.policeStationId) {
+            cond.push(`policestationid = ${params.policeStationId}`);
+        }
+
+        if (params.userId) {
+            cond.push(`userid = ${params.userId}`);
+        }
+
+        if (params.searchBy) {
+            cond.push(`name ~ ${params.searchBy} `)
+        }
+            return query + cond.join(" AND ");
+    },
+
+    prepareLimitQuery(params) {
+        return ` LIMIT ${params.limit} `;
+    },
+
+    prepareSortQuery(params) {
+        return ` ORDER BY ${params.sortBy} ${params.sortByOrder || "ASC"}`;
+    },
+
+    prepareOffsetQuery(params) {
+        return ` OFFSET ${params.offset} `;
+    },
+
+    prepareSearchQuery(params) {
+        return ` WHERE name ~ ${params.searchBy}`;
     },
 }

@@ -1,5 +1,5 @@
 const queryHelper = require('../service/dbservice');
-const prepareQuery = require('../service/prepareQuery');
+const queryGenerator = require('../service/prepareQuery');
 
 module.exports = {
 
@@ -12,7 +12,7 @@ module.exports = {
                 name text,
                 date text,
                 rate int, 
-            PRIMARY KEY (id))`;
+            PRIMARY KEY ((//partitionalkeys), //clusteringkeys id, name)) `;
 
         return queryHelper.execute(query, {});
     },
@@ -36,12 +36,12 @@ module.exports = {
         return queryHelper.execute(query, params);
     },
 
-    async getAll(params) {        
-        const query = await prepareQuery(params);
+    getAll(params) {
+        const query = queryGenerator.prepareQuery(params);        
 
         return queryHelper.execute(query, {});
     },
-
+    
     create(crime) {
         const query = `
             INSERT INTO crimes (id, userId, policeStationId, name, date, rate)
