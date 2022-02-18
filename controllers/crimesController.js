@@ -2,9 +2,9 @@ const crimeRepository = require("../models/crime");
 
 module.exports = {
 
-    getCrimes(req, res) {        
+    getCrimes(req, res) {                
         crimeRepository
-            .getAll()
+            .getAll(req.query)            
             .then((result) => {                
                 res.status(200).json(result.rows);
             })

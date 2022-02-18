@@ -39,7 +39,8 @@ const router = express.Router();
  *            userId: 47745749-d385-4545-903a-d4ec73d70f98
  *            policeStationId: 151a87da-48ef-4827-9d21-26aa96ea1176
  *            name: robbery
- *            date: 12.02.2022        
+ *            date: 12.02.2022  
+ *            rate: 8888      
  */
 
 /**
@@ -55,19 +56,53 @@ router.get('/', (req, res) => {
 
 /**
  * @swagger
- * /crimes:
+ * /crimes:  
  *   get:
- *     summary: Get all crimes
- *     tags: [Crimes]
+ *     tags:
+ *     - Crimes
+ *     summary: get full criminal situation info
+ *     description: Get full criminal situation info
+ *     parameters:
+ *     - in: query
+ *       description: Get all crimes by user ID
+ *       name: userId
+ *       type: integer
+ *     - in: query
+ *       description: Get all crimes by station ID
+ *       name: stationId
+ *       type: integer
+ *     - in: query
+ *       description: Find by keyword
+ *       name: keyword
+ *       type: string
+ *     - in: query
+ *       description: Sort all crimes by 
+ *       name: sortBy
+ *       type: string
+ *       enum: ["name", "rate", "date"]
+ *     - in: query
+ *       description: Sort all crimes by order
+ *       name: sortOrder
+ *       type: string  
+ *       enum: [ "asc", "desc"]
+ *     - in: query
+ *       description: Offset in result array for pagination
+ *       name: offset
+ *       type: string  
+ *     - in: query
+ *       description: Limit amount of items in result array for pagination
+ *       name: limit
+ *       type: string  
+ *    
  *     responses:
  *       200:
- *         description: The list of the all crimes
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Crimes'
+ *         description: search results matching criteria
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Crimes'
+ *       400:
+ *         description: bad input parameter      
  */
 
 router.get('/crimes', async (req, res) => {
@@ -134,7 +169,7 @@ router.post('/crimes', async (req, res) => {
  *      - in: path
  *        name: id
  *        schema:
- *          type: timeuuid        
+ *          type: timeuuid         
  *        description: Crime id
  *    requestBody:
  *      required: true
