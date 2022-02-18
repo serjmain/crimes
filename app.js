@@ -11,13 +11,12 @@ const options = require("./swagger-config.json");
 const specs = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(cors());
+const PORT = process.env.PORT || 8080;
 
-app.listen(3000, async () => {
+app.listen(PORT, async () => {
   await client.connect();
   crimeRepository.init();
-  console.log(`Server is running on http://localhost:${3000}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 })
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 app.use("/", router);

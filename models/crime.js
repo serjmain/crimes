@@ -1,4 +1,5 @@
 const queryHelper = require('../service/dbservice');
+const queryGenerator = require('../service/prepareQuery');
 
 module.exports = {
 
@@ -11,7 +12,8 @@ module.exports = {
                 name text,
                 date text,
                 rate int, 
-            PRIMARY KEY (id))`;
+            PRIMARY KEY ((id, userId, policeStationId), name))
+            WITH CLUSTERING ORDER BY (name ASC) `;
 
         return queryHelper.execute(query, {});
     },
@@ -30,13 +32,14 @@ module.exports = {
                 my_guard.crimes 
             WHERE id = ?
             LIMIT 1
+            ALLOW FILTERING
         `;
 
         return queryHelper.execute(query, params);
     },
 
-    getAll() {
-        const query = `SELECT * FROM crimes`;        
+    getAll(params) {
+        const query = queryGenerator.prepareQuery(params);
 
         return queryHelper.execute(query, {});
     },
@@ -58,6 +61,6 @@ module.exports = {
             SET name = ?, date = ?, rate = ?
             WHERE id = ? 
         `
-        return queryHelper.execute(query, params);        
-    }
+        return queryHelper.execute(query, params);
+    },
 }
