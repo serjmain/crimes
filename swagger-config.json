@@ -9,7 +9,11 @@
         "servers": [
             {
                 "url": "http://localhost:8080"
+            },
+            {
+                "url": "https://tranquil-taiga-07587.herokuapp.com/"
             }
+
         ]
     },
     "apis": [

@@ -1,23 +1,21 @@
 module.exports = {
     prepareQuery(params) {
+        
         let query = `SELECT * FROM crimes`;
 
         if (params.sortBy) {
             query += this.prepareSortQuery(params);
         }
-        if (params.searchBy) {
-            query += this.prepareSearchQuery
-        }
         if (params.offset) {
-            query += this.prepateOffsetQueary(params);
+            query += this.prepareOffsetQuery(params);
         }
         if (params.limit) {
             query += this.prepareLimitQuery(params);
         }
         if (params.policeStationId || params.userId || params.searchBy) {
             query += this.prepareWhereQuery(params);
-        }
-
+        }   
+        console.log ("query", query);     
         return query;
     },
 
@@ -26,17 +24,17 @@ module.exports = {
         let cond = [];
 
         if (params.policeStationId) {
-            cond.push(`policestationid = ${params.policeStationId}`);
+            cond.push(`policestationid = ${params.policeStationId} `);
         }
 
         if (params.userId) {
-            cond.push(`userid = ${params.userId}`);
+            cond.push(`userid = ${params.userId} `);
         }
 
         if (params.searchBy) {
-            cond.push(`name ~ ${params.searchBy} `)
+            cond.push(`name = '${params.searchBy}' `);
         }
-            return query + cond.join(" AND ");
+        return query + cond.join(" AND " ) + `ALLOW FILTERING`;
     },
 
     prepareLimitQuery(params) {
@@ -49,9 +47,5 @@ module.exports = {
 
     prepareOffsetQuery(params) {
         return ` OFFSET ${params.offset} `;
-    },
-
-    prepareSearchQuery(params) {
-        return ` WHERE name ~ ${params.searchBy}`;
     },
 }
