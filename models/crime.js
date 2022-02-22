@@ -7,16 +7,17 @@ module.exports = {
         const query = ` 
             CREATE TABLE IF NOT EXISTS crimes (
                 id timeuuid, 
-                userId timeuuid,
-                policeStationId timeuuid,
+                userId uuid,
+                policeStationId uuid,
                 name text,
                 date text,
-                rate int, 
-            PRIMARY KEY ((id, userId, policeStationId), name))
+                rate text,
+                key text, 
+            PRIMARY KEY ((key), name))
             WITH CLUSTERING ORDER BY (name ASC) `;
 
         return queryHelper.execute(query, {});
-    },
+    },   
 
     getById(id) {
         const params = [id];
@@ -46,8 +47,8 @@ module.exports = {
 
     create(crime) {
         const query = `
-            INSERT INTO crimes (id, userId, policeStationId, name, date, rate)
-            VALUES(now(),?,?,?,?,?)
+            INSERT INTO crimes (id, userId, policeStationId, name, date, rate, key)
+            VALUES(now(),?,?,?,?,?,?)
             IF NOT EXISTS
         `;
 
@@ -61,6 +62,7 @@ module.exports = {
             SET name = ?, date = ?, rate = ?
             WHERE id = ? 
         `
+
         return queryHelper.execute(query, params);
-    },
+    }
 }

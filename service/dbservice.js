@@ -1,7 +1,7 @@
 const { Client } = require("cassandra-driver")
 
 module.exports = new Client({
-  keyspace: "my_guard",
+  keyspace: "my_guard",  
   cloud: {
     secureConnectBundle: "./secure-connect-crimes.zip",
   },

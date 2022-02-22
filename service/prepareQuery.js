@@ -1,8 +1,11 @@
 module.exports = {
     prepareQuery(params) {
-        
-        let query = `SELECT * FROM crimes`;
 
+        let query = `SELECT * FROM crimes `;
+
+        if (params.policeStationId || params.userId || params.searchBy) {
+            query += this.prepareWhereQuery(params);
+        }
         if (params.sortBy) {
             query += this.prepareSortQuery(params);
         }
@@ -11,11 +14,8 @@ module.exports = {
         }
         if (params.limit) {
             query += this.prepareLimitQuery(params);
-        }
-        if (params.policeStationId || params.userId || params.searchBy) {
-            query += this.prepareWhereQuery(params);
-        }   
-        console.log ("query", query);     
+        }       
+
         return query;
     },
 
@@ -34,7 +34,8 @@ module.exports = {
         if (params.searchBy) {
             cond.push(`name = '${params.searchBy}' `);
         }
-        return query + cond.join(" AND " ) + `ALLOW FILTERING`;
+        
+        return query + cond.join(" AND ") + ` ALLOW FILTERING`;
     },
 
     prepareLimitQuery(params) {
@@ -42,10 +43,6 @@ module.exports = {
     },
 
     prepareSortQuery(params) {
-        return ` ORDER BY ${params.sortBy} ${params.sortByOrder || "ASC"}`;
-    },
-
-    prepareOffsetQuery(params) {
-        return ` OFFSET ${params.offset} `;
-    },
+        return ` WHERE key = 'key' ORDER BY ${params.sortBy} ${params.sortByOrder || "DESC"}`;
+    },    
 }

@@ -69,11 +69,11 @@ router.get('/', (req, res) => {
  *       type: integer
  *     - in: query
  *       description: Get all crimes by station ID
- *       name: stationId
+ *       name: policeStationId
  *       type: integer
  *     - in: query
  *       description: Find by keyword
- *       name: keyword
+ *       name: searchBy
  *       type: string
  *     - in: query
  *       description: Sort all crimes by 
@@ -82,15 +82,11 @@ router.get('/', (req, res) => {
  *       enum: ["name", "rate", "date"]
  *     - in: query
  *       description: Sort all crimes by order
- *       name: sortOrder
+ *       name: sortByOrder
  *       type: string  
- *       enum: [ "asc", "desc"]
+ *       enum: [ "asc", "desc"]       
  *     - in: query
- *       description: Offset in result array for pagination
- *       name: offset
- *       type: string  
- *     - in: query
- *       description: Limit amount of items in result array for pagination
+ *       description: Limit amount of items in result 
  *       name: limit
  *       type: string  
  *    
@@ -111,7 +107,7 @@ router.get('/crimes', async (req, res) => {
 
 /**
  * @swagger
- * /Crimes/{id}:
+ * /crimes/{id}:
  *   get:
  *     summary: Get crime by id
  *     tags: [Crimes]
@@ -136,7 +132,7 @@ router.get('/crimes/:id', async (req, res) => {
 
 /**
  * @swagger
- * /Crimes:
+ * /crimes:
  *   post:
  *     summary: Adds crime
  *     tags: [Crimes]
@@ -161,7 +157,7 @@ router.post('/crimes', async (req, res) => {
 
 /**
  * @swagger
- * /Crimes/{id}:
+ * /crimes/{id}:
  *  patch:
  *    summary: Change crime by id
  *    tags: [Crimes]
