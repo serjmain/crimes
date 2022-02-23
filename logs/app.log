@@ -247,3 +247,11 @@
 {"level":"info","message":"::1 - - [22/Feb/2022:22:27:29 +0000] \"GET /api-docs/swagger-ui-init.js HTTP/1.1\" 200 7173 \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\"\n"}
 {"level":"info","message":"::1 - - [22/Feb/2022:22:27:29 +0000] \"GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\"\n"}
 {"level":"info","message":"::1 - - [22/Feb/2022:22:27:30 +0000] \"GET /api-docs/favicon-32x32.png HTTP/1.1\" 304 - \"http://localhost:8080/api-docs/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:13:37 +0000] \"GET /crimes HTTP/1.1\" 200 1468 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:13:48 +0000] \"GET /crimes?policeStationId=163a800c-90ae-11ec-b909-0242ac120003 HTTP/1.1\" 200 1041 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:13:53 +0000] \"GET /crimes HTTP/1.1\" 200 1468 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:14:01 +0000] \"GET /crimes?userId=c66e88ac-90ad-11ec-b909-0242ac120003 HTTP/1.1\" 200 1041 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:14:12 +0000] \"GET /crimes?searchByName=Robbery HTTP/1.1\" 200 1468 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:14:15 +0000] \"GET /crimes?policeStationId=163a800c-90ae-11ec-b909-0242ac120003&userId=c66e88ac-90ad-11ec-b909-0242ac120003 HTTP/1.1\" 200 1041 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:14:31 +0000] \"GET /crimes?searchByRate=8 HTTP/1.1\" 200 1468 \"-\" \"PostmanRuntime/7.29.0\"\n"}
+{"level":"info","message":"::1 - - [23/Feb/2022:11:14:38 +0000] \"GET /crimes?searchByRate=7 HTTP/1.1\" 200 1468 \"-\" \"PostmanRuntime/7.29.0\"\n"}
