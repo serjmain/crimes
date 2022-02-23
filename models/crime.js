@@ -14,7 +14,7 @@ module.exports = {
                 rate text,
                 key text, 
             PRIMARY KEY ((key), name))
-            WITH CLUSTERING ORDER BY (name ASC) `;
+            WITH CLUSTERING ORDER BY (name ASC)`;
 
         return queryHelper.execute(query, {});
     },   
@@ -55,14 +55,13 @@ module.exports = {
         return queryHelper.execute(query, crime);
     },
 
-    update(id, crime) {
-        const params = [crime.name, crime.date, crime.rate, id];
+    update(id, crime) {        
+        const params = [crime.name, crime.date, crime.rate, id];        
         const query = `
             UPDATE crimes
             SET name = ?, date = ?, rate = ?
             WHERE id = ? 
-        `
-
+        ` 
         return queryHelper.execute(query, params);
     }
 }

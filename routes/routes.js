@@ -14,7 +14,8 @@ const router = express.Router();
  *            - policeStationId
  *            - name
  *            - date
- *            - rate             
+ *            - rate
+ *            - key             
  *        properties:
  *            id:
  *              type: timeuuid
@@ -32,15 +33,18 @@ const router = express.Router();
  *              type: text
  *              description: date of the crime
  *            rate:
- *              type: int
- *              description: rate of the crime *              
- *        example:
- *            id: 81edf778-890d-11ec-a8a3-0242ac120005
+ *              type: text
+ *              description: rate of the crime 
+ *            key:
+ *              type: text
+ *              description: key for sort              
+ *        example:            
  *            userId: 47745749-d385-4545-903a-d4ec73d70f98
  *            policeStationId: 151a87da-48ef-4827-9d21-26aa96ea1176
  *            name: robbery
  *            date: 12.02.2022  
- *            rate: 8888      
+ *            rate: 5
+ *            key: key      
  */
 
 /**
@@ -72,8 +76,16 @@ router.get('/', (req, res) => {
  *       name: policeStationId
  *       type: integer
  *     - in: query
- *       description: Find by keyword
- *       name: searchBy
+ *       description: Find by name
+ *       name: searchByName
+ *       type: string
+ *     - in: query
+ *       description: Find by rate
+ *       name: searchByRate
+ *       type: string
+ *     - in: query
+ *       description: Find by date
+ *       name: searchByDate
  *       type: string
  *     - in: query
  *       description: Sort all crimes by 
