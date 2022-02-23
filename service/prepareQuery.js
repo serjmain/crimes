@@ -15,9 +15,7 @@ module.exports = {
         if (params.sortBy) {
             query += this.prepareSortQuery(params);
         }
-        if (params.offset) {
-            query += this.prepareOffsetQuery(params);
-        }
+        
         if (params.limit) {
             query += this.prepareLimitQuery(params);
         }
@@ -48,9 +46,7 @@ module.exports = {
         if (params.searchByDate) {
             cond.push(`date = '${params.searchByDate}' `);
         }
-
-
-
+        
         return query + cond.join(" AND ") + ` ALLOW FILTERING`;
     },
 
