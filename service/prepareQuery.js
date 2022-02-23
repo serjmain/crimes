@@ -3,7 +3,13 @@ module.exports = {
 
         let query = `SELECT * FROM crimes `;
 
-        if (params.policeStationId || params.userId || params.searchBy) {
+        if (
+            params.policeStationId ||
+            params.userId ||
+            params.searchByName ||
+            params.searchByRate ||
+            params.searchByDate
+        ) {
             query += this.prepareWhereQuery(params);
         }
         if (params.sortBy) {
@@ -14,7 +20,7 @@ module.exports = {
         }
         if (params.limit) {
             query += this.prepareLimitQuery(params);
-        }       
+        }
 
         return query;
     },
@@ -31,10 +37,20 @@ module.exports = {
             cond.push(`userid = ${params.userId} `);
         }
 
-        if (params.searchBy) {
-            cond.push(`name = '${params.searchBy}' `);
+        if (params.searchByName) {
+            cond.push(`name = '${params.searchByName}' `);
         }
-        
+
+        if (params.searchByRate) {
+            cond.push(`rate = '${params.searchByRate}' `);
+        }
+
+        if (params.searchByDate) {
+            cond.push(`date = '${params.searchByDate}' `);
+        }
+
+
+
         return query + cond.join(" AND ") + ` ALLOW FILTERING`;
     },
 
@@ -44,5 +60,5 @@ module.exports = {
 
     prepareSortQuery(params) {
         return ` WHERE key = 'key' ORDER BY ${params.sortBy} ${params.sortByOrder || "DESC"}`;
-    },    
+    },
 }

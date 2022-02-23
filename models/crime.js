@@ -14,7 +14,7 @@ module.exports = {
                 rate text,
                 key text, 
             PRIMARY KEY ((key), name))
-            WITH CLUSTERING ORDER BY (name ASC) `;
+            WITH CLUSTERING ORDER BY (name ASC)`;
 
         return queryHelper.execute(query, {});
     },   
