@@ -165,7 +165,7 @@ router.post('/crimes', async (req, res) => {
  *      - in: path
  *        name: id
  *        schema:
- *          type: timeuuid *        
+ *          type: timeuuid         
  *        description: Crime id
  *    requestBody:
  *      required: true
