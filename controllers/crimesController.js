@@ -6,7 +6,7 @@ module.exports = {
         crimeRepository
             .getAll(req.query)            
             .then((result) => {                
-                res.status(200).json(result.rows);
+                res.status(200).json(result.rows.map(row => crimeRepository.toItem(row)));
             })
             .catch((err) => res.status(404).send(err));
     },

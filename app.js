@@ -8,7 +8,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const client = require("./service/dbservice");
 const options = require("./swagger-config.json");
 const specs = swaggerJsDoc(options);
-const morgan = require('morgan')
+const morgan = require('morgan');
 const winston = require('./config/winston');
 
 app.use(morgan('combined', { stream: winston.stream }));

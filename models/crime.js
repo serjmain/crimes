@@ -17,7 +17,7 @@ module.exports = {
             WITH CLUSTERING ORDER BY (name ASC)`;
 
         return queryHelper.execute(query, {});
-    },   
+    },
 
     getById(id) {
         const params = [id];
@@ -55,13 +55,24 @@ module.exports = {
         return queryHelper.execute(query, crime);
     },
 
-    update(id, crime) {        
-        const params = [crime.name, crime.date, crime.rate, id];        
+    update(id, crime) {
+        const params = [crime.name, crime.date, crime.rate, id];
         const query = `
             UPDATE crimes
             SET name = ?, date = ?, rate = ?
             WHERE id = ? 
-        ` 
+        `
         return queryHelper.execute(query, params);
+    },
+
+    toItem(crime) {
+        return {
+            id: crime.id,
+            userid: crime.userid,
+            policestationId: crime.policestationid,
+            name: crime.name,
+            date: crime.date,
+            rate: crime.rate
+        }
     }
 }
