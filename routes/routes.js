@@ -14,8 +14,7 @@ const router = express.Router();
  *            - policeStationId
  *            - name
  *            - date
- *            - rate
- *            - key             
+ *            - rate                         
  *        properties:
  *            id:
  *              type: timeuuid
@@ -34,17 +33,13 @@ const router = express.Router();
  *              description: date of the crime
  *            rate:
  *              type: text
- *              description: rate of the crime 
- *            key:
- *              type: text
- *              description: key for sort              
+ *              description: rate of the crime                          
  *        example:            
  *            userId: 47745749-d385-4545-903a-d4ec73d70f98
  *            policeStationId: 151a87da-48ef-4827-9d21-26aa96ea1176
  *            name: robbery
  *            date: 12.02.2022  
- *            rate: 5
- *            key: key      
+ *            rate: 5                  
  */
 
 /**

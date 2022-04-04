@@ -48,7 +48,7 @@ module.exports = {
     create(crime) {
         const query = `
             INSERT INTO crimes (id, userId, policeStationId, name, date, rate, key)
-            VALUES(now(),?,?,?,?,?,?)
+            VALUES(now(),?,?,?,?,?,'key')
             IF NOT EXISTS
         `;
 
@@ -65,11 +65,11 @@ module.exports = {
         return queryHelper.execute(query, params);
     },
 
-    toItem(crime) {
+    toItem(crime) {        
         return {
             id: crime.id,
             userid: crime.userid,
-            policestationId: crime.policestationid,
+            policestationid: crime.policestationid,
             name: crime.name,
             date: crime.date,
             rate: crime.rate
