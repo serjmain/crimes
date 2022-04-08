@@ -11,9 +11,11 @@ const specs = swaggerJsDoc(options);
 const morgan = require('morgan');
 const winston = require('./config/winston');
 
+app.use(express.json());
+app.use(cors());
 app.use(morgan('combined', { stream: winston.stream }));
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
-app.use(cors());
+
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, async () => {
