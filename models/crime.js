@@ -7,8 +7,8 @@ module.exports = {
         const query = ` 
             CREATE TABLE IF NOT EXISTS crimes (
                 id timeuuid, 
-                userId uuid,
-                policeStationId uuid,
+                userId timeuuid,
+                policeStationId timeuuid,
                 name text,
                 date text,
                 rate text,
@@ -45,13 +45,13 @@ module.exports = {
         return queryHelper.execute(query, {});
     },
 
-    create(crime) {
+    create(crime) {    
         const query = `
             INSERT INTO crimes (id, userId, policeStationId, name, date, rate, key)
             VALUES(now(),?,?,?,?,?,'key')
             IF NOT EXISTS
         `;
-
+        
         return queryHelper.execute(query, crime);
     },
 
