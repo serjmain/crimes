@@ -13,8 +13,8 @@ module.exports = {
                 date text,
                 rate text,
                 key text, 
-            PRIMARY KEY ((key), name))
-            WITH CLUSTERING ORDER BY (name ASC)`;
+            PRIMARY KEY ((key), rate))
+            WITH CLUSTERING ORDER BY (rate ASC)`;
 
         return queryHelper.execute(query, {});
     },

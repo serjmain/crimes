@@ -55,6 +55,6 @@ module.exports = {
     },
 
     prepareSortQuery(params) {
-        return ` WHERE key = 'key' ORDER BY ${params.sortBy} ${params.sortByOrder || "DESC"}`;
+        return ` WHERE key = 'key' ORDER BY ${params.sortBy} DESC`;
     },
 }

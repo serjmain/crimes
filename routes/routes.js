@@ -86,12 +86,7 @@ router.get('/', (req, res) => {
  *       description: Sort all crimes by 
  *       name: sortBy
  *       type: string
- *       enum: ["name", "rate", "date"]
- *     - in: query
- *       description: Sort all crimes by order
- *       name: sortByOrder
- *       type: string  
- *       enum: [ "asc", "desc"]       
+ *       enum: ["rate"]       
  *     - in: query
  *       description: Limit amount of items in result 
  *       name: limit
