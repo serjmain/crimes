@@ -77,14 +77,14 @@ router.get('/', (req, res) => {
  *     - in: query
  *       description: Find by rate
  *       name: searchByRate
- *       type: string
+ *       type: double
  *     - in: query
  *       description: Find by date
  *       name: searchByDate
  *       type: string
  *     - in: query
- *       description: Sort all crimes by 
- *       name: sortBy
+ *       description: Sort all crimes by rate DESC
+ *       name: sortByRate
  *       type: string
  *       enum: ["rate"]       
  *     - in: query

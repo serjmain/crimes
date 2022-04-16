@@ -11,7 +11,7 @@ module.exports = {
                 policeStationId timeuuid,
                 name text,
                 date text,
-                rate text,
+                rate double,
                 key text, 
             PRIMARY KEY ((key), rate))
             WITH CLUSTERING ORDER BY (rate ASC)`;

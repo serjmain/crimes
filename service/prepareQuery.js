@@ -40,7 +40,7 @@ module.exports = {
         }
 
         if (params.searchByRate) {
-            cond.push(`rate = '${params.searchByRate}' `);
+            cond.push(`rate = ${params.searchByRate} `);
         }
 
         if (params.searchByDate) {
