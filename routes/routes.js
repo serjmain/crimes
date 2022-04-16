@@ -32,7 +32,7 @@ const router = express.Router();
  *              type: text
  *              description: date of the crime
  *            rate:
- *              type: text
+ *              type: double
  *              description: rate of the crime                          
  *        example:            
  *            userId: 47745749-d385-4545-903a-d4ec73d70f98
