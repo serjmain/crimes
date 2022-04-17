@@ -45,7 +45,8 @@ module.exports = {
         return queryHelper.execute(query, {});
     },
 
-    create(crime) {    
+    create(crime) {
+            
         const query = `
             INSERT INTO crimes (id, userId, policeStationId, name, date, rate, key)
             VALUES(now(),?,?,?,?,?,'key')
@@ -55,13 +56,12 @@ module.exports = {
         return queryHelper.execute(query, crime);
     },
 
-    update(id, crime) {
-        const params = [crime.name, crime.date, crime.rate, id];
-        const query = `
-            UPDATE crimes
-            SET name = ?, date = ?, rate = ?
-            WHERE id = ? 
-        `
+    async update(id, crime) {
+        const getRate = await this.getById(id)        
+        const { rate } = getRate.rows[0]; 
+        const params = [crime.name, crime.date, id];
+        const query = `UPDATE crimes SET name = ?, date = ? WHERE key = 'key' AND rate = ${rate} IF id = ?`
+        
         return queryHelper.execute(query, params);
     },
 

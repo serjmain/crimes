@@ -12,7 +12,7 @@ module.exports = {
         ) {
             query += this.prepareWhereQuery(params);
         }
-        if (params.sortBy) {
+        if (params.sortByRate) {
             query += this.prepareSortQuery(params);
         }
         
@@ -55,6 +55,6 @@ module.exports = {
     },
 
     prepareSortQuery(params) {
-        return ` WHERE key = 'key' ORDER BY ${params.sortBy} DESC`;
+        return ` WHERE key = 'key' ORDER BY ${params.sortByRate} DESC`;
     },
 }

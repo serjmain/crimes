@@ -1,6 +1,7 @@
 const crimesController = require("../controllers/crimesController");
 const express = require('express');
 const router = express.Router();
+const validator = require('../service/validator');
 
 /**
  * @swagger
@@ -35,11 +36,27 @@ const router = express.Router();
  *              type: double
  *              description: rate of the crime                          
  *        example:            
- *            userId: 47745749-d385-4545-903a-d4ec73d70f98
- *            policeStationId: 151a87da-48ef-4827-9d21-26aa96ea1176
+ *            userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
+ *            policeStationId: 623a2970-b7e7-11ec-be73-b58754443b73
  *            name: robbery
  *            date: 12.02.2022  
- *            rate: 5                  
+ *            rate: 5
+ *      ChangeCrime:
+ *        type: object
+ *        required:
+ *            - name
+ *            - date                         
+ *        properties:
+ *            name:
+ *              type: text
+ *              description: name of the crime
+ *            date:
+ *              type: text
+ *              description: date of the crime                         
+ *        example:            
+ *            date: 12.02.2022  
+ *            name: "theft"   
+ *                        
  */
 
 /**
@@ -125,10 +142,12 @@ router.get('/crimes', async (req, res) => {
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Crimes'      
+ *               $ref: '#/components/schemas/Crimes'
+ *       400:
+ *         description: bad request      
  */
 
-router.get('/crimes/:id', async (req, res) => {
+router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
     crimesController.getCrimeById(req, res);
 });
 
@@ -150,10 +169,12 @@ router.get('/crimes/:id', async (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Crimes'       
+ *               $ref: '#/components/schemas/Crimes'
+ *       400:
+ *         description: Bad request       
  */
 
-router.post('/crimes', async (req, res) => {
+router.post('/crimes', validator.validatePostCrime, async (req, res) => {
     crimesController.postCrime(req, res);
 });
 
@@ -174,17 +195,19 @@ router.post('/crimes', async (req, res) => {
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Crimes'
+ *            $ref: '#/components/schemas/ChangeCrime'
  *    responses:
  *      200:
  *        description: Crime was updated
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Crimes'     
+ *              $ref: '#/components/schemas/Crimes'
+ *      400:
+ *        description: Bad request     
  */
 
-router.patch('/crimes/:id', async (req, res) => {
+router.patch('/crimes/:id', validator.validatePatchCrimeById, async (req, res) => {
     crimesController.patchCrimeById(req, res);
 });
 
