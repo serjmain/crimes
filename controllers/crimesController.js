@@ -40,6 +40,7 @@ module.exports = {
         crimeRepository
             .create(req.body)
             .then((result) => {
+                console.log(">>>>>>>>>>", result)
                 return res.status(201).json({ message: 'The crime has been successfully registered in the database', id: result.rows[0].id })
             })
             .catch((err) => res.status(404).send(err));
