@@ -15,11 +15,11 @@ const validator = require('../service/validator');
  *            - policeStationId
  *            - name
  *            - date
- *            - rate                         
+ *            - rate
  *        properties:
  *            id:
  *              type: timeuuid
- *              description: Crime ID 
+ *              description: Crime ID
  *            userId:
  *              type: timeuuid
  *              description: The user ID who added the crime
@@ -34,29 +34,28 @@ const validator = require('../service/validator');
  *              description: date of the crime
  *            rate:
  *              type: double
- *              description: rate of the crime                          
- *        example:            
+ *              description: rate of the crime
+ *        example:
  *            userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
  *            policeStationId: 623a2970-b7e7-11ec-be73-b58754443b73
  *            name: robbery
- *            date: 12.02.2022  
+ *            date: 12.02.2022
  *            rate: 5
  *      ChangeCrime:
  *        type: object
  *        required:
  *            - name
- *            - date                         
+ *            - date
  *        properties:
  *            name:
  *              type: text
  *              description: name of the crime
  *            date:
  *              type: text
- *              description: date of the crime                         
- *        example:            
- *            date: 12.02.2022  
- *            name: "theft"   
- *                        
+ *              description: date of the crime
+ *        example:
+ *            date: 12.02.2022
+ *            name: "theft"
  */
 
 /**
@@ -72,7 +71,7 @@ router.get('/', (req, res) => {
 
 /**
  * @swagger
- * /crimes:  
+ * /crimes:
  *   get:
  *     tags:
  *     - Crimes
@@ -103,12 +102,11 @@ router.get('/', (req, res) => {
  *       description: Sort all crimes by rate DESC
  *       name: sortByRate
  *       type: string
- *       enum: ["rate"]       
+ *       enum: ["rate"]
  *     - in: query
  *       description: Limit amount of items in result 
  *       name: limit
- *       type: string  
- *    
+ *       type: string
  *     responses:
  *       200:
  *         description: search results matching criteria
@@ -117,7 +115,7 @@ router.get('/', (req, res) => {
  *           items:
  *             $ref: '#/components/schemas/Crimes'
  *       400:
- *         description: bad input parameter      
+ *         description: bad input parameter
  */
 
 router.get('/crimes', async (req, res) => {
@@ -134,7 +132,7 @@ router.get('/crimes', async (req, res) => {
  *       - in: path
  *         name: id
  *         schema:
- *           type: timeuuid         
+ *           type: timeuuid
  *         description: crime id
  *     responses:
  *       200:
@@ -144,7 +142,7 @@ router.get('/crimes', async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/Crimes'
  *       400:
- *         description: bad request      
+ *         description: bad request
  */
 
 router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
@@ -171,7 +169,7 @@ router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/Crimes'
  *       400:
- *         description: Bad request       
+ *         description: Bad request
  */
 
 router.post('/crimes', validator.validatePostCrime, async (req, res) => {
@@ -188,7 +186,7 @@ router.post('/crimes', validator.validatePostCrime, async (req, res) => {
  *      - in: path
  *        name: id
  *        schema:
- *          type: timeuuid         
+ *          type: timeuuid
  *        description: Crime id
  *    requestBody:
  *      required: true
@@ -204,7 +202,7 @@ router.post('/crimes', validator.validatePostCrime, async (req, res) => {
  *            schema:
  *              $ref: '#/components/schemas/Crimes'
  *      400:
- *        description: Bad request     
+ *        description: Bad request
  */
 
 router.patch('/crimes/:id', validator.validatePatchCrimeById, async (req, res) => {
