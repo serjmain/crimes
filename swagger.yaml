@@ -115,8 +115,6 @@ paths:
                  $ref: '#/components/schemas/Crimes'
         400:
           description: Bad request
-  /crimes/{id}:
-
 definitions:
   schemas:
     Crimes:
