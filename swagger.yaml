@@ -146,11 +146,11 @@ definitions:
             type: double
             description: rate of the crime
         example:
-           userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
-           policeStationId: 623a2970-b7e7-11ec-be73-b58754443b73
-           name: robbery
-           date: 12.02.2022
-           rate: 5
+          userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
+          policeStationId: 623a2970-b7e7-11ec-be73-b58754443b73
+          name: robbery
+          date: 12.02.2022
+          rate: 5
     ChangeCrime:
       type: object
       required:
