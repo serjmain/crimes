@@ -1,0 +1,171 @@
+swagger: '2.0'
+info:
+  description: This is a simple API
+  version: 1.0.0
+  title: My guard API
+ 
+tags:
+- name: Crimes
+  description: Crimes API 
+  
+ 
+paths:
+  /crimes:
+    get:
+      tags:
+      - Crimes
+      summary: get full criminal situation info
+      description: Get full criminal situation info
+      parameters:
+      - in: query
+        description: Get all crimes by user ID
+        name: userId
+        type: integer
+      - in: query
+        description: Get all crimes by station ID
+        name: policeStationId
+        type: integer
+      - in: query
+        description: Find by name
+        name: searchByName
+        type: string
+      - in: query
+        description: Find by rate
+        name: searchByRate
+        type: double
+      - in: query
+        description: Find by date
+        name: searchByDate
+        type: string
+      - in: query
+        description: Sort all crimes by rate DESC
+        name: sortByRate
+        type: string
+        enum: ["rate"]
+      - in: query
+        description: Limit amount of items in result 
+        name: limit
+        type: string
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Crimes'
+        400:
+          description: bad input parameter
+  /crimes/{id}:
+    get:
+      summary: Get crime by id
+      tags: [Crimes]
+      parameters:
+      - in: path
+        name: id
+        schema:
+        type: timeuuid
+        description: crime id
+      responses:
+        200:
+          description: crime by id
+          contens:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Crimes'
+        400:
+          description: bad request
+  /crimes:
+    post:
+      summary: Adds crime
+      tags: [Crimes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Crimes'
+      responses:
+        201:
+          description: Crime created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Crimes'
+        400:
+          description: Bad request
+  /crimes/{id}:
+    patch:
+      summary: Change crime by id
+      tags: [Crimes]
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: timeuuid
+        description: Crime id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeCrime'
+      responses:
+        200:
+          description: Crime was updated
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/Crimes'
+        400:
+          description: Bad request
+definitions:
+  schemas:
+    Crimes:
+      type: object
+      required:
+          - id
+          - userId
+          - policeStationId
+          - name
+          - date
+          - rate
+      properties:
+          id:
+            type: timeuuid
+            description: Crime ID
+          userId:
+            type: timeuuid
+            description: The user ID who added the crime
+          policeStationId:
+            type: timeuuid
+            description: Police station ID
+          name:
+            type: text
+            description: name of the crime
+          date:
+            type: text
+             description: date of the crime
+           rate:
+             type: double
+             description: rate of the crime
+       example:
+           userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
+           policeStationId: 623a2970-b7e7-11ec-be73-b58754443b73
+           name: robbery
+           date: 12.02.2022
+           rate: 5
+    ChangeCrime:
+      type: object
+      required:
+          - name
+          - date
+      properties:
+          name:
+            type: text
+            description: name of the crime
+          date:
+            type: text
+            description: date of the crime
+        example:
+            date: 12.02.2022
+            name: "theft"
