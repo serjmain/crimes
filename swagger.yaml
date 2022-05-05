@@ -165,4 +165,4 @@ definitions:
           description: date of the crime
       example:
         date: 12.02.2022
-        name: "theft"
+        name: theft
