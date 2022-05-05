@@ -141,7 +141,7 @@ definitions:
             description: name of the crime
           date:
             type: text
-             description: date of the crime
+            description: date of the crime
            rate:
              type: double
              description: rate of the crime
