@@ -120,31 +120,31 @@ definitions:
     Crimes:
       type: object
       required:
-          - id
-          - userId
-          - policeStationId
-          - name
-          - date
-          - rate
+        - id
+        - userId
+        - policeStationId
+        - name
+        - date
+        - rate
       properties:
-          id:
-            type: timeuuid
-            description: Crime ID
-          userId:
-            type: timeuuid
-            description: The user ID who added the crime
-          policeStationId:
-            type: timeuuid
-            description: Police station ID
-          name:
-            type: text
-            description: name of the crime
-          date:
-            type: text
-            description: date of the crime
-          rate:
-            type: double
-            description: rate of the crime
+        id:
+          type: timeuuid
+          description: Crime ID
+        userId:
+          type: timeuuid
+          description: The user ID who added the crime
+        policeStationId:
+          type: timeuuid
+          description: Police station ID
+        name:
+          type: text
+          description: name of the crime
+        date:
+          type: text
+          description: date of the crime
+        rate:
+          type: double
+          description: rate of the crime
         example:
           userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
           policeStationId: 623a2970-b7e7-11ec-be73-b58754443b73
