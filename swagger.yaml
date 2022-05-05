@@ -157,12 +157,12 @@ definitions:
           - name
           - date
       properties:
-          name:
-            type: text
-            description: name of the crime
-          date:
-            type: text
-            description: date of the crime
+        name:
+          type: text
+          description: name of the crime
+        date:
+          type: text
+          description: date of the crime
       example:
         date: 12.02.2022
         name: "theft"
