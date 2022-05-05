@@ -54,6 +54,24 @@ paths:
               $ref: '#/components/schemas/Crimes'
         400:
           description: bad input parameter
+    post:
+      summary: Adds crime
+      tags: [Crimes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Crimes'
+      responses:
+        201:
+          description: Crime created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Crimes'
+        400:
+          description: Bad request
   /crimes/{id}:
     get:
       summary: Get crime by id
@@ -73,25 +91,6 @@ paths:
                 $ref: '#/components/schemas/Crimes'
         400:
           description: bad request
-  /crimes:
-    post:
-      summary: Adds crime
-      tags: [Crimes]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Crimes'
-      responses:
-        201:
-          description: Crime created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Crimes'
-        400:
-          description: Bad request
   /crimes/{id}:
     patch:
       summary: Change crime by id
