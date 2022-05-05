@@ -163,6 +163,6 @@ definitions:
           date:
             type: text
             description: date of the crime
-        example:
-            date: 12.02.2022
-            name: "theft"
+      example:
+          date: 12.02.2022
+          name: "theft"
