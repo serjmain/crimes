@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: This is a simple API
   version: 1.0.0
-  title: My guard API
+  title: myGuard-crimes
 servers:
 - url: https://tranquil-taiga-07587.herokuapp.com 
 tags:
