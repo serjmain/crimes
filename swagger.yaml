@@ -3,12 +3,12 @@ info:
   description: This is a simple API
   version: 1.0.0
   title: My guard API
- 
+servers:
+- url: https://tranquil-taiga-07587.herokuapp.com 
 tags:
 - name: Crimes
-  description: Crimes API 
-  
- 
+  description: Crimes API
+
 paths:
   /crimes:
     get:
