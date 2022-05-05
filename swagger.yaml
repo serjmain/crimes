@@ -91,7 +91,6 @@ paths:
                 $ref: '#/components/schemas/Crimes'
         400:
           description: bad request
-  /crimes/{id}:
     patch:
       summary: Change crime by id
       tags: [Crimes]
@@ -116,6 +115,8 @@ paths:
                  $ref: '#/components/schemas/Crimes'
         400:
           description: Bad request
+  /crimes/{id}:
+
 definitions:
   schemas:
     Crimes:
