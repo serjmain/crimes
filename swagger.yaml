@@ -1,10 +1,9 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  description: This is a simple API
   version: 1.0.0
-  title: myGuard-crimes
-servers:
-- url: https://tranquil-taiga-07587.herokuapp.com 
+  title: myguard-crimes API
+host: tranquil-taiga-07587.herokuapp.com 
+basePath: /
 tags:
 - name: Crimes
   description: Crimes API
@@ -31,7 +30,7 @@ paths:
       - in: query
         description: Find by rate
         name: searchByRate
-        type: double
+        type: number
       - in: query
         description: Find by date
         name: searchByDate
@@ -40,37 +39,35 @@ paths:
         description: Sort all crimes by rate DESC
         name: sortByRate
         type: string
-        enum: ["rate"]
       - in: query
         description: Limit amount of items in result 
         name: limit
         type: string
       responses:
-        200:
+        "200":
           description: search results matching criteria
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Crimes'
-        400:
+              $ref: '#/definitions/Crimes'
+        "400":
           description: bad input parameter
     post:
       summary: Adds crime
       tags: [Crimes]
-      requestBody:
+      parameters:
+      - in: body
+        name: Crime
+        description: Add crime
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Crimes'
+        schema:
+          $ref: '#/definitions/Crimes'
       responses:
-        201:
+        "201":
           description: Crime created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Crimes'
-        400:
+          schema:
+                $ref: '#/definitions/Crimes'
+        "400":
           description: Bad request
   /crimes/{id}:
     get:
@@ -79,17 +76,15 @@ paths:
       parameters:
       - in: path
         name: id
-        schema:
-        type: timeuuid
+        required: true
+        type: integer
         description: crime id
       responses:
-        200:
+        "200":
           description: crime by id
-          contens:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Crimes'
-        400:
+          schema:
+                $ref: '#/definitions/Crimes'
+        "400":
           description: bad request
     patch:
       summary: Change crime by id
@@ -97,26 +92,22 @@ paths:
       parameters:
       - in: path
         name: id
-        schema:
-          type: timeuuid
-        description: Crime id
-      requestBody:
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ChangeCrime'
+        type: integer
+        description: Crime id
+      - in: body
+        name: Crime
+        description: Crime update
+        schema:
+          $ref: '#/definitions/ChangeCrime'
       responses:
-        200:
+        "200":
           description: Crime was updated
-          content:
-            application/json:
-              schema:
-                 $ref: '#/components/schemas/Crimes'
-        400:
+          schema:
+            $ref: '#/definitions/Crimes'
+        "400":
           description: Bad request
 definitions:
-  schemas:
     Crimes:
       type: object
       required:
@@ -128,22 +119,22 @@ definitions:
         - rate
       properties:
         id:
-          type: timeuuid
+          type: string
           description: Crime ID
         userId:
-          type: timeuuid
+          type: string
           description: The user ID who added the crime
         policeStationId:
-          type: timeuuid
+          type: string
           description: Police station ID
         name:
-          type: text
+          type: string
           description: name of the crime
         date:
-          type: text
+          type: string
           description: date of the crime
         rate:
-          type: double
+          type: number
           description: rate of the crime
       example:
         userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
@@ -158,10 +149,10 @@ definitions:
           - date
       properties:
         name:
-          type: text
+          type: string
           description: name of the crime
         date:
-          type: text
+          type: string
           description: date of the crime
       example:
         date: 12.02.2022
