@@ -5,8 +5,7 @@ const validator = require('../service/validator');
 
 /**
  * @swagger
- * components:
- *   schemas:
+ *   definitions:
  *      Crimes:
  *        type: object
  *        required:
@@ -18,22 +17,22 @@ const validator = require('../service/validator');
  *            - rate
  *        properties:
  *            id:
- *              type: timeuuid
+ *              type: string
  *              description: Crime ID
  *            userId:
- *              type: timeuuid
+ *              type: string
  *              description: The user ID who added the crime
  *            policeStationId:
- *              type: timeuuid
+ *              type: string
  *              description: Police station ID
  *            name:
- *              type: text
+ *              type: string
  *              description: name of the crime
  *            date:
- *              type: text
+ *              type: string
  *              description: date of the crime
  *            rate:
- *              type: double
+ *              type: number
  *              description: rate of the crime
  *        example:
  *            userId: 854aa5d0-bbfb-11ec-8115-63fb9536bdba
@@ -93,7 +92,7 @@ router.get('/', (req, res) => {
  *     - in: query
  *       description: Find by rate
  *       name: searchByRate
- *       type: double
+ *       type: number
  *     - in: query
  *       description: Find by date
  *       name: searchByDate
@@ -102,7 +101,6 @@ router.get('/', (req, res) => {
  *       description: Sort all crimes by rate DESC
  *       name: sortByRate
  *       type: string
- *       enum: ["rate"]
  *     - in: query
  *       description: Limit amount of items in result 
  *       name: limit
@@ -113,7 +111,7 @@ router.get('/', (req, res) => {
  *         schema:
  *           type: array
  *           items:
- *             $ref: '#/components/schemas/Crimes'
+ *             $ref: '#/definitions/Crimes'
  *       400:
  *         description: bad input parameter
  */
@@ -131,16 +129,14 @@ router.get('/crimes', async (req, res) => {
  *     parameters:
  *       - in: path
  *         name: id
- *         schema:
- *           type: timeuuid
+ *         required: true
+ *         type: integer
  *         description: crime id
  *     responses:
  *       200:
  *         description: crime by id
- *         contens:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Crimes'
+ *         schema:
+ *           $ref: '#/components/schemas/Crimes'
  *       400:
  *         description: bad request
  */
@@ -155,19 +151,17 @@ router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
  *   post:
  *     summary: Adds crime
  *     tags: [Crimes]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Crimes'
+ *     parameters:
+ *     - in: body
+ *       name: Crime
+ *       description: Add crime
+ *       schema:
+ *         $ref: '#/definitions/Crimes'
  *     responses:
  *       201:
  *         description: Crime created
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Crimes'
+ *         schema:
+ *           $ref: '#/components/schemas/Crimes'
  *       400:
  *         description: Bad request
  */
@@ -185,22 +179,19 @@ router.post('/crimes', validator.validatePostCrime, async (req, res) => {
  *    parameters:
  *      - in: path
  *        name: id
- *        schema:
- *          type: timeuuid
+ *        required: true
+ *        type: integer
  *        description: Crime id
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/ChangeCrime'
+ *      - in: body
+ *        name: Crime
+ *        description: Crime update
+ *        schema:
+ *          $ref: '#/definitions/ChangeCrime'
  *    responses:
  *      200:
  *        description: Crime was updated
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Crimes'
+ *        schema:
+ *          $ref: '#/components/schemas/Crimes'
  *      400:
  *        description: Bad request
  */
