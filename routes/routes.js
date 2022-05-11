@@ -80,11 +80,11 @@ router.get('/', (req, res) => {
  *     - in: query
  *       description: Get all crimes by user ID
  *       name: userId
- *       type: integer
+ *       type: string
  *     - in: query
  *       description: Get all crimes by station ID
  *       name: policeStationId
- *       type: integer
+ *       type: string
  *     - in: query
  *       description: Find by name
  *       name: searchByName
@@ -130,7 +130,7 @@ router.get('/crimes', async (req, res) => {
  *       - in: path
  *         name: id
  *         required: true
- *         type: integer
+ *         type: string
  *         description: crime id
  *     responses:
  *       200:
@@ -187,7 +187,7 @@ router.post('/crimes', validator.validatePostCrime, async (req, res) => {
  *      - in: path
  *        name: id
  *        required: true
- *        type: integer
+ *        type: string
  *        description: Crime id
  *      - in: body
  *        name: Crime

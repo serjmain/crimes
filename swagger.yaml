@@ -18,11 +18,11 @@ paths:
       - in: query
         description: Get all crimes by user ID
         name: userId
-        type: integer
+        type: string
       - in: query
         description: Get all crimes by station ID
         name: policeStationId
-        type: integer
+        type: string
       - in: query
         description: Find by name
         name: searchByName
@@ -77,7 +77,7 @@ paths:
       - in: path
         name: id
         required: true
-        type: integer
+        type: string
         description: crime id
       responses:
         "200":
@@ -93,7 +93,7 @@ paths:
       - in: path
         name: id
         required: true
-        type: integer
+        type: string
         description: Crime id
       - in: body
         name: Crime
