@@ -136,7 +136,7 @@ router.get('/crimes', async (req, res) => {
  *       200:
  *         description: crime by id
  *         schema:
- *           $ref: '#/components/schemas/Crimes'
+ *           $ref: '#/definitions/Crimes'
  *       400:
  *         description: bad request
  */
@@ -161,7 +161,7 @@ router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
  *       201:
  *         description: Crime created
  *         schema:
- *           $ref: '#/components/schemas/Crimes'
+ *           $ref: '#/definitions/Crimes'
  *       400:
  *         description: Bad request
  */
@@ -191,7 +191,7 @@ router.post('/crimes', validator.validatePostCrime, async (req, res) => {
  *      200:
  *        description: Crime was updated
  *        schema:
- *          $ref: '#/components/schemas/Crimes'
+ *          $ref: '#/definitions/Crimes'
  *      400:
  *        description: Bad request
  */
