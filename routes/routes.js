@@ -149,12 +149,19 @@ router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
  * @swagger
  * /crimes:
  *   post:
+ *     tags: 
+ *     - Crimes
  *     summary: Adds crime
- *     tags: [Crimes]
+ *     description: Adds crime
+ *     consumes: 
+ *     - application/json
+ *     produces:
+ *     - application/json
  *     parameters:
  *     - in: body
  *       name: Crime
- *       description: Add crime
+ *       description: Crime to add
+ *       required: false
  *       schema:
  *         $ref: '#/definitions/Crimes'
  *     responses:
