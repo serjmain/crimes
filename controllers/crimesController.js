@@ -17,7 +17,7 @@ module.exports = {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ message: 'get crime by id error', errors })
+            return res.status(400).json({ message: "get crime by id error", errors })
         }
         if (!req.params.id) {
             res.send(404);
@@ -25,6 +25,9 @@ module.exports = {
         crimeRepository
             .getById(req.params.id)
             .then((result) => {
+                if (result.rows.length < 1) {
+                    return res.status(404).json({ message: "Crime with this id not found" })
+                }
                 res.status(200).json(result.rows[0]);
             })
             .catch((err) => res.status(404).send(err));
