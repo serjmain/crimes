@@ -1,5 +1,6 @@
 const crimeRepository = require("../models/crime");
 const { validationResult } = require('express-validator');
+const v = require('../service/validator')
 
 module.exports = {
 
@@ -22,6 +23,11 @@ module.exports = {
         if (!req.params.id) {
             res.send(404);
         }
+        
+        if (!v.validateUUID(req.params.id)){
+            return res.status(404).json({ message: "Crime with this id not found"})
+        }
+        
         crimeRepository
             .getById(req.params.id)
             .then((result) => {
