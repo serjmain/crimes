@@ -201,6 +201,8 @@ router.post('/crimes', validator.validatePostCrime, async (req, res) => {
  *          $ref: '#/definitions/Crimes'
  *      400:
  *        description: Bad request
+ *      404:
+ *        description: Not found
  */
 
 router.patch('/crimes/:id', validator.validatePatchCrimeById, async (req, res) => {
