@@ -1,6 +1,6 @@
 const crimeRepository = require("../models/crime");
-const { validationResult } = require('express-validator');
-const v = require('../service/validator')
+const { validationResult } = require("express-validator");
+const v = require("../service/validator")
 
 module.exports = {
 
@@ -18,21 +18,17 @@ module.exports = {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ message: "get crime by id error", errors })
-        }
-        if (!req.params.id) {
-            res.send(404);
-        }
-        
-        if (!v.validateUUID(req.params.id)){
-            return res.status(404).json({ message: "Crime with this id not found"})
+            return res.status(400).json({ message: "get crime by id error", errors });
+        }        
+        if (!v.validateUUID(req.params.id) || !req.params.id){
+            return res.status(404).json({ message: "Crime with this id not found"});
         }
         
         crimeRepository
             .getById(req.params.id)
             .then((result) => {
                 if (result.rows.length < 1) {
-                    return res.status(404).json({ message: "Crime with this id not found" })
+                    return res.status(404).json({ message: "Crime with this id not found" });
                 }
                 res.status(200).json(result.rows[0]);
             })
@@ -43,13 +39,13 @@ module.exports = {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ message: 'post crime error', errors })
+            return res.status(400).json({ message: "post crime error", errors });
         }
 
         crimeRepository
             .create(req.body)
             .then((result) => {                
-                return res.status(201).json({ message: 'The crime has been successfully registered in the database', id: result.rows[0].id })
+                return res.status(201).json({ message: "The crime has been successfully registered in the database", id: result.rows[0].id })
             })
             .catch((err) => res.status(404).send(err));
     },
@@ -58,10 +54,10 @@ module.exports = {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ message: 'post crime error', errors })
+            return res.status(400).json({ message: "post crime error", errors })
         }        
         if (!req.params.id || req.params.id == '{id}') {
-            res.status(400).json({ message: 'id field is empty' });
+            res.status(400).json({ message: "id field is empty" });
         }
         crimeRepository.update(req.params.id, req.body);
         crimeRepository

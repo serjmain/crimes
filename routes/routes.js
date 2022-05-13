@@ -139,6 +139,8 @@ router.get('/crimes', async (req, res) => {
  *           $ref: '#/definitions/Crimes'
  *       400:
  *         description: bad request
+ *       404:
+ *         description: not found
  */
 
 router.get('/crimes/:id', validator.validateGetCrimeById, async (req, res) => {
