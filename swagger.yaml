@@ -86,6 +86,8 @@ paths:
                 $ref: '#/definitions/Crimes'
         "400":
           description: bad request
+        "404":
+          description: not found
     patch:
       summary: Change crime by id
       tags: [Crimes]
