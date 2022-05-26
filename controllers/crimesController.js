@@ -44,7 +44,8 @@ module.exports = {
 
         crimeRepository
             .create(req.body)
-            .then((result) => {                
+            .then((result) => {       
+                console.log(">>>>>>>>>>>", res)         
                 return res.status(201).json({ message: "The crime has been successfully registered in the database", id: result.rows[0].id })
             })
             .catch((err) => res.status(404).send(err));
@@ -55,10 +56,11 @@ module.exports = {
 
         if (!errors.isEmpty()) {
             return res.status(400).json({ message: "post crime error", errors })
-        }        
+        }                
         if (!req.params.id || req.params.id == '{id}') {
             res.status(400).json({ message: "id field is empty" });
         }
+
         crimeRepository.update(req.params.id, req.body);
         crimeRepository
             .getById(req.params.id)
