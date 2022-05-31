@@ -7,9 +7,17 @@ basePath: /
 tags:
 - name: Crimes
   description: Crimes API
+securityDefinitions:
+  OAuth2:
+    type: oauth2
+    flow: application
+    tokenUrl: https://34.120.40.225.nip.io/v1/oauth-auth/credentials
+    description: OAuth 2.0 with Client Credentias Grant type
 paths:
   /crimes:
     get:
+      security:
+        - OAuth2: []
       tags:
       - Crimes
       summary: get full criminal situation info
@@ -53,6 +61,8 @@ paths:
         "400":
           description: bad input parameter
     post:
+      security:
+        - OAuth2: []      
       summary: Adds crime
       tags: [Crimes]
       parameters:
@@ -71,6 +81,8 @@ paths:
           description: Bad request
   /crimes/{id}:
     get:
+      security:
+        - OAuth2: []    
       summary: Get crime by id
       tags: [Crimes]
       parameters:
@@ -89,6 +101,8 @@ paths:
         "404":
           description: not found
     patch:
+      security:
+        - OAuth2: []    
       summary: Change crime by id
       tags: [Crimes]
       parameters:
